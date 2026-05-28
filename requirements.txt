@@ -1,0 +1,10 @@
+# Core pipeline dependencies (inferred from repository scripts)
+praw>=7.7.0
+python-dotenv>=1.0.0
+google-generativeai>=0.8.0
+google-genai>=1.0.0
+pandas>=2.0.0
+tqdm>=4.66.0
+transformers>=4.40.0
+torch>=2.0.0
+vaderSentiment>=3.3.2
