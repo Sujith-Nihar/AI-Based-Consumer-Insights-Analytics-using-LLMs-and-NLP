@@ -105,7 +105,7 @@ This step ties sentiment to **actionable product dimensions**: leakage, adhesive
 
 - Analyzed CSV/JSON feeds **Power BI** reports in `Reddit_BI_Visualizations/` and `UOAA_BI_Visualizations/`.
 - Dashboards cover sentiment trends, brand comparison, topic/emotion breakdowns, and attribute-level pain points.
-- Presentation visuals are also exported to `docs/images/` for documentation (sourced from `Presentation_slides/AI-based-Analytics Presentation.pptx`).
+- Detailed charts are in Power BI (`.pbix`) and `Presentation_slides/AI-based-Analytics Presentation.pptx`; this README uses **Mermaid diagrams and tables** for GitHub-friendly rendering.
 
 ---
 
@@ -139,17 +139,100 @@ Business Insights and Brand Comparison
 - **Offline** batch pipeline: run Python scripts locally, refresh data files, open Power BI Desktop.
 - **APIs used:** Reddit API (scraping), Google Gemini API (NLP). Models are called per post (supervised) or on sampled batches (topics).
 
-### Pipeline architecture (from project presentation)
+### System architecture (end-to-end)
 
-![End-to-end pipeline architecture](docs/images/pipeline-architecture.png)
+The diagram below reflects the **actual repository layout**: separate ingestion paths for Reddit and UOAA, shared preprocessing and brand tagging, parallel NLP jobs, and Power BI as the reporting layer.
 
-*Five-stage flow: data collection → preprocessing → NLP (Gemini + RoBERTa) → comparative analysis → Power BI.*
+```mermaid
+flowchart TB
+    subgraph sources["① Data sources"]
+        reddit_api["Reddit API"]
+        uoaa_export["UOAA forum exports<br/>(JSON in repo / zip)"]
+    end
 
-### NLP workflow (Gemini + RoBERTa)
+    subgraph collect["② Collection"]
+        scraper["reddit_scraper_rebuilt.py<br/>(PRAW)"]
+        raw_reddit["Raw Reddit JSON / CSV"]
+        raw_uoaa["UOAA cleaned JSON"]
+    end
 
-![NLP workflow](docs/images/nlp-workflow-gemini-roberta.png)
+    subgraph prep["③ Preprocessing"]
+        clean["Noise removal, normalization,<br/>merge archives"]
+        brand["Brand splits:<br/>Hollister · Coloplast · both · neither"]
+    end
 
-*Cleaned JSON feeds Gemini for sentiment/aspects and RoBERTa for emotion scoring before results are merged for reporting.*
+    subgraph nlp["④ NLP analysis"]
+        reddit_nlp["FINAL_reddit_analyzer.py<br/>Gemini: sentiment, aspects, quotes"]
+        uoaa_nlp["v4_UOAA_analysis.py<br/>Gemini + RoBERTa GoEmotions"]
+        topics["Unsupervised scripts<br/>Gemini topic themes"]
+        stance["parent_child_analysis.py<br/>Topic vs reply stance (UOAA)"]
+    end
+
+    subgraph outputs["⑤ Analytical files"]
+        files["CSV / JSON / JSONL<br/>Data_Merged_* folders"]
+        topic_json["Topic JSON outputs"]
+    end
+
+    subgraph report["⑥ Reporting"]
+        pbi["Power BI .pbix"]
+        insights["Brand comparison &<br/>product insights"]
+    end
+
+    reddit_api --> scraper --> raw_reddit
+    uoaa_export --> raw_uoaa
+    raw_reddit --> clean
+    raw_uoaa --> clean
+    clean --> brand
+    brand --> reddit_nlp
+    brand --> uoaa_nlp
+    brand --> topics
+    brand --> stance
+    reddit_nlp --> files
+    uoaa_nlp --> files
+    topics --> topic_json
+    stance --> files
+    files --> pbi
+    topic_json --> pbi
+    pbi --> insights
+```
+
+### Per-post NLP flow (UOAA vs Reddit)
+
+```mermaid
+flowchart LR
+    post["Single post / comment<br/>(cleaned text)"]
+
+    subgraph uoaa_path["UOAA — v4_UOAA_analysis.py"]
+        roberta["RoBERTa GoEmotions<br/>→ 6 emotion buckets"]
+        gemini_u["Gemini 2.0 Flash<br/>→ sentiment, VADER-style scores,<br/>pros/cons aspects, quotes"]
+        merge_u["Merge into one JSON record"]
+    end
+
+    subgraph reddit_path["Reddit — FINAL_reddit_analyzer.py"]
+        gemini_r["Gemini 2.0 Flash<br/>→ sentiment, aspects,<br/>primary_emotion, quotes"]
+    end
+
+    csv_out["Flattened CSV columns<br/>for Power BI"]
+    post --> roberta
+    post --> gemini_u
+    roberta --> merge_u
+    gemini_u --> merge_u
+    merge_u --> csv_out
+    post --> gemini_r
+    gemini_r --> csv_out
+```
+
+### Five-stage business view
+
+| Stage | What happens | Repository location |
+|-------|----------------|---------------------|
+| 1. Data collection | Reddit scrape or load UOAA exports | `Reddit_Scraper+Results/`, `UOAA_Analysis/` |
+| 2. Preprocessing | Clean, merge, brand-tag | `Cleaned_Reddit_Posts/`, `Reddit_Cleaned+Merged_Archives/` |
+| 3. NLP | Gemini (+ RoBERTa on UOAA) per post; batch topics | `Analyzer/`, `v4_UOAA_analysis.py`, `Topic_Modeling_Code&Output/` |
+| 4. Comparative analysis | Hollister vs Coloplast splits | `Data_Merged_Hollister/`, `Data_Merged_Coloplast/` |
+| 5. Visualization | Dashboards for stakeholders | `*_BI_Visualizations/*.pbix` |
+
+> **Note:** Decorative slide graphics with dark backgrounds are **not** embedded here—they do not render well on GitHub dark mode. Use the Mermaid diagrams and tables below; full charts remain in `Presentation_slides/AI-based-Analytics Presentation.pptx`.
 
 ---
 
@@ -180,7 +263,7 @@ AI-Based-Consumer-Insights-Analytics-using-LLMs-and-NLP/
 ├── README.md                          # This file
 ├── requirements.txt                   # Python dependencies
 ├── .env.example                       # API key template
-├── docs/images/                       # README visuals (from presentation)
+├── docs/images/                       # Optional slide exports (legacy; README uses Mermaid + tables)
 ├── Presentation_slides/               # Full slide deck (.pptx)
 │
 ├── Reddit_Analysis/                     # Reddit scrape, clean, analyze (~119 MB)
@@ -235,11 +318,28 @@ This answers: *“How do patients feel about this brand or experience?”*
 
 RoBERTa (GoEmotions) on UOAA adds a layer beyond polarity—e.g. **joy** when a product “finally works,” **anger** during adhesive failure, **sadness** around complications, or **neutral** informational posts.
 
-![RoBERTa emotion approach](docs/images/roberta-emotion-model.png)
+**GoEmotions → six buckets** (`v4_UOAA_analysis.py`):
 
-*Six emotion buckets derived from GoEmotions; dominant emotion supports filtering complaint vs. relief narratives.*
+| Emotion bucket | Example GoEmotions labels grouped in code |
+|----------------|-------------------------------------------|
+| **joy** | joy, amusement, gratitude, relief, optimism, pride, … |
+| **sadness** | sadness, disappointment, grief, remorse |
+| **anger** | anger, annoyance, disapproval |
+| **fear** | fear, nervousness |
+| **disgust** | disgust, embarrassment |
+| **neutral** | neutral, confusion, curiosity, surprise, … |
 
-**Insight:** Sentiment tells direction; emotion explains the patient’s reaction and helps prioritize fixes (leak frustration vs. mild dissatisfaction).
+**VADER-style sentiment scores** (from Gemini output, aligned with presentation methodology):
+
+| Field | Range | Meaning |
+|-------|-------|---------|
+| `neg` | 0–1 | Share of negative polarity in text |
+| `neu` | 0–1 | Share of neutral polarity |
+| `pos` | 0–1 | Share of positive polarity |
+| `compound` | −1 to +1 | Overall polarity (negative ← 0 → positive) |
+| `overall_sentiment` | positive / negative / neutral | Semantic label (meaning-first, not score-only) |
+
+**Insight:** Sentiment tells *direction*; emotion explains the patient’s *reaction* and helps prioritize fixes (leak **frustration** vs. mild dissatisfaction).
 
 ### Attribute-Level Analysis
 
@@ -273,97 +373,106 @@ Presentation sample sizes (branded posts used in comparative charts):
 
 ---
 
-## 9. Visual Insights from Presentation Slides
+## 9. Key Insights (Tables)
 
-The figures below are exported from `Presentation_slides/AI-based-Analytics Presentation.pptx` into `docs/images/`.
+Insights below are taken from the project **presentation** and **Power BI analysis** (branded post subsets). They are formatted as tables so they stay readable on GitHub light and dark themes. Interactive charts live in `.pbix` files and `Presentation_slides/AI-based-Analytics Presentation.pptx`.
 
-### Hollister sentiment trends over time (UOAA)
+### Sample sizes (branded posts in comparative analysis)
 
-**What it shows (presentation slide 13):** Year-over-year sentiment balance for Hollister on the UOAA forum.  
-**Key insight:** Negative sentiment stays relatively low while positive/neutral discussion remains steady from **2016–2025**—useful as a **baseline** before new product launches.  
-*Full chart: see `Presentation_slides/AI-based-Analytics Presentation.pptx` (slide 13).*
+| Platform | Hollister (n) | Coloplast (n) |
+|----------|-----------------|---------------|
+| **UOAA** | 645 | 420 |
+| **Reddit** | 1,245 | 1,334 |
 
-### Top positive and negative aspects (UOAA – Hollister)
-
-![UOAA Hollister top aspects](docs/images/uoaa-hollister-top-aspects.png)
-
-**What it shows:** Leading drivers of positive vs negative Hollister discussion on UOAA.  
-**Key insight:** Presentation notes **adhesive failure** among top complaints, while **system security** and **skin tolerance** appear among strengths.
-
-### Sentiment distribution by product area (UOAA – Hollister)
-
-![UOAA Hollister sentiment distribution](docs/images/uoaa-hollister-sentiment-distribution.png)
-
-**What it shows:** How positive/neutral/negative sentiment splits across product categories (e.g. bags/pouches, skin barriers/wafers).  
-**Key insight:** Overall sentiment skews positive/neutral, but **bags/pouches** and **skin barriers/wafers** contribute a large share of negative responses.
-
-### Emotion distribution (UOAA – Hollister)
-
-![UOAA Hollister emotion distribution](docs/images/uoaa-hollister-emotion-distribution.png)
-
-**What it shows:** Dominant emotions (e.g. joy, neutral) and where sadness/anger concentrate by product type.  
-**Key insight:** **Joy** and **neutral** dominate; stronger negative emotions cluster around problem-prone categories like pouches and wafers.
-
-### Reddit – Hollister sentiment trends
-
-![Reddit Hollister sentiment trends over time](docs/images/reddit-hollister-sentiment-trends.png)
-
-**What it shows:** Reddit sentiment for Hollister over time.  
-**Key insight:** **Positive sentiment increases over time** while negative remains comparatively low in the presented analysis.
-
-### Reddit – Top aspects (Hollister)
-
-![Reddit Hollister top aspects](docs/images/reddit-hollister-top-aspects.png)
-
-**What it shows:** Top five positive and negative themes on Reddit.  
-**Key insight:** Patients praise **product range** and **support**; criticisms focus heavily on **adhesive issues** and **skin irritation**.
-
-### Reddit – Sentiment distribution (Hollister)
-
-![Reddit Hollister sentiment distribution](docs/images/reddit-hollister-sentiment-distribution.png)
-
-**What it shows:** Sentiment split across Hollister product categories on Reddit.  
-**Key insight:** Mostly positive overall for bags/wafers, with persistent adhesive-related concerns.
-
-### Reddit – Hollister vs Coloplast sentiment comparison
-
-![Reddit brand sentiment comparison](docs/images/reddit-brand-sentiment-comparison.png)
-
-**What it shows:** Side-by-side positive / neutral / negative shares.
+### Reddit — sentiment share by brand
 
 | Brand | Positive | Neutral | Negative |
 |-------|----------|---------|----------|
-| Hollister (n=1,245) | 50.53% | 26.12% | 23.35% |
-| Coloplast (n=1,334) | 56.52% | 26.84% | 16.64% |
+| **Hollister** (n=1,245) | 50.53% | 26.12% | 23.35% |
+| **Coloplast** (n=1,334) | 56.52% | 26.84% | 16.64% |
 
-**Key insight:** Coloplast shows a **higher positive share** and **lower negative share** on Reddit in this branded subset.
+**Insight:** On Reddit, Coloplast has a **higher positive share** and a **lower negative share** in this branded subset. Hollister carries more negative discussion relative to Coloplast.
 
-### UOAA – Brand comparison
+### Cross-platform sentiment differences (Coloplast vs Hollister)
 
-![UOAA brand comparison](docs/images/uoaa-brand-comparison.png)
+| Platform | Positive (Δ) | Negative (Δ) | Interpretation |
+|----------|--------------|--------------|----------------|
+| **UOAA** | +5.7 pts | +4.7 pts | Coloplast is **more polarizing**—more positive *and* more negative |
+| **Reddit** | +6.0 pts | −9.5 pts | Coloplast is **net-favored**—higher positive, notably lower negative |
 
-**What it shows:** Comparative sentiment patterns for Hollister vs Coloplast on UOAA.  
-**Key insight:** Coloplast trends **more positive but also more polarizing** on UOAA (higher positive and higher negative than Hollister in the presentation summary).
+### Hollister vs Coloplast — qualitative comparison (Reddit branded subset)
 
-### Power BI dashboards
+| Dimension | Hollister (n=1,245) | Coloplast (n=1,334) |
+|-----------|------------------------|----------------------|
+| **Top positive driver** | Product performance & reliability | Leak prevention / good seal |
+| **Top negative driver** | Adhesive / barrier problems | Leaks & blowouts |
+| **Skin health** | Mixed; irritation often tied to adhesive / rings | Strong skin protection narrative; lower irritation mentions |
+| **Usability** | Good pouch usability | Ease of use / convenience cited often |
+| **Durability** | Barrier ring degradation; pouch detachment | Pouch durability concerns |
+| **Fit / seal** | Generally good seal; activity-related leaks | Generally good seal; isolated blowouts |
+| **Emotion pattern** | Joy + neutral dominate; anger lower | Joy + neutral dominate; slightly more negative emotion signal |
+| **Positive sentiment share** | 50.53% (see table above) | 56.52% (see table above) |
 
-![Power BI visualization layer](docs/images/power-bi-dashboards.png)
+### Hollister — top themes by platform (presentation)
 
-**What it shows:** Examples of dashboard views used to communicate NLP outputs to non-technical stakeholders.  
-**Key insight:** Technical JSON/CSV fields are transformed into **filters, trends, and brand comparisons** without requiring reviewers to read raw model output.
+| Platform | Top positive themes | Top negative themes |
+|----------|---------------------|---------------------|
+| **UOAA** | System security, skin tolerance, reliable wear | **Adhesive failure** (dominant complaint) |
+| **Reddit** | Product range, customer support | **Adhesive issues**, **skin irritation** |
 
-### Gemini prompt design (transparency)
+### Hollister — sentiment by product category (UOAA)
 
-![Gemini prompt example](docs/images/gemini-prompt-example.png)
+| Product area | Pattern (UOAA, Hollister) |
+|--------------|---------------------------|
+| **Overall** | Mostly positive or neutral |
+| **Bags / pouches** | Large share of **negative** responses |
+| **Skin barriers / wafers** | Large share of **negative** responses |
+| **Accessories** | Negative emotion concentrated here |
 
-**What it shows:** Structured prompt rules (no hallucination, JSON-only output, VADER-style scoring, aspect lists).  
-**Key insight:** Consistent prompting improves reproducibility and keeps attributes aligned with business taxonomy.
+### Hollister — emotion by product category (UOAA)
 
-### Insights and context slide
+| Emotion | Pattern |
+|---------|---------|
+| **Joy, neutral** | Dominant across discussions |
+| **Sadness, anger** | Concentrated in bags/pouches, wafers, accessories |
 
-![Insights and context](docs/images/insights-context.png)
+### Trends over time (2016–2025)
 
-**What it shows:** High-level framing of quantitative and qualitative findings used in the final narrative.
+| Platform | Trend |
+|----------|--------|
+| **UOAA (Hollister)** | Sentiment largely **stable**; negative share stays relatively low |
+| **Reddit (Hollister)** | **Positive sentiment increases** over time; negative remains comparatively low |
+
+### Unsupervised topic examples (from repo JSON)
+
+| Sentiment | Example Hollister theme (Reddit topic output) |
+|-----------|-----------------------------------------------|
+| Positive | Customer support & samples; extended-wear adhesion; M9 odor control |
+| Negative | Leakage & seal issues; short wear time with thin output |
+
+Source: `Topic_Modeling_Code&Output/Ostomy_submissions_Hollister_Unsupervised_Topics_2025-11-10.json`
+
+### Power BI — what stakeholders see
+
+| Dashboard focus | Examples in repo |
+|-----------------|------------------|
+| Sentiment overview & trends | `Hollister_analysis_UOAA.pbix`, `Copy of FINAL HOLLISTER.pbix` |
+| Brand comparison | `coloplast_hollister_combined_analysis-2.pbix`, Reddit comparison pages |
+| Emotion & product category | UOAA emotion / distribution pages |
+| Parent topic stance (agree/disagree) | `coloplast_parent_child_analysis.pbix` |
+| Attribute / aspect drill-down | Pros & cons from Gemini columns in merged CSVs |
+
+### Gemini prompt rules (summary)
+
+| Rule | Purpose |
+|------|---------|
+| No hallucinated brands or products | Only text-supported facts |
+| Strict JSON schema | Reliable CSV / Power BI import |
+| VADER-style `neg` / `neu` / `pos` / `compound` | Quantitative trends |
+| Controlled `pros_aspects` / `cons_aspects` lists | Comparable attribute reporting |
+| Verbatim `key_quotes` | Qualitative evidence for stakeholders |
+
+Full prompt text: `Reddit_Analysis/Analyzed_&_Filtered_Data/Analyzer/NEW# Gemini Prompt.txt`
 
 ---
 
@@ -430,7 +539,14 @@ Power BI is the stakeholder layer of this project. `.pbix` files connect to anal
 
 **Opening locally:** Install [Power BI Desktop](https://powerbi.microsoft.com/desktop/), open a `.pbix` file, and **refresh data source paths** if files moved—connections are machine-specific.
 
-![Power BI reporting layer](docs/images/power-bi-dashboards.png)
+| Report type | Typical pages / metrics |
+|-------------|-------------------------|
+| Sentiment overview | Positive / neutral / negative %, trends by year |
+| Brand comparison | Hollister vs Coloplast side-by-side |
+| Product categories | Bags, wafers, accessories — sentiment & emotion |
+| Top aspects | Ranked pros/cons from Gemini aspect fields |
+| Stance (UOAA) | Agree / disagree / mixed per topic thread |
+| Quotes | Representative patient language (where modeled) |
 
 ---
 
@@ -579,7 +695,8 @@ For the full narrative and additional charts, see `Presentation_slides/AI-based-
 | Resource | Path |
 |----------|------|
 | Slide deck | `Presentation_slides/AI-based-Analytics Presentation.pptx` |
-| README figures | `docs/images/` |
+| Architecture diagrams | Mermaid in this README (sections 5–9) |
+| Legacy slide PNGs | `docs/images/` (optional; may not render on dark GitHub) |
 | Gemini prompt (Reddit) | `Reddit_Analysis/Analyzed_&_Filtered_Data/Analyzer/NEW# Gemini Prompt.txt` |
 | Analyzed Hollister CSV | `Reddit_Analysis/Analyzed_&_Filtered_Data/Data_Merged_Hollister/merged_all_cleaned__hollister_only.csv` |
 | Topic output example | `Reddit_Analysis/Analyzed_&_Filtered_Data/Topic_Modeling_Code&Output/Ostomy_submissions_Hollister_Unsupervised_Topics_2025-11-10.json` |
