@@ -1,0 +1,317 @@
+[
+  {
+    "topic": "CrohnsDisease",
+    "post_meta": {
+      "topic_title": "CrohnsDisease",
+      "topic_url": "https://reddit.com/r/CrohnsDisease",
+      "post_url": null,
+      "user": "UCgirl",
+      "date": "1451791865"
+    },
+    "text": "I would call around to the different supply companies and talk to some individuals that work for the companies for help (I believe they have nurses). You can describe your stoma and they will likely send out FREE kits for you to try with recommended products based on your situation. Off the top of my head, try Coloplast, Hollister, Convetec, and Marlen. You may need convexity (your belly skin pushed in away from your stoma). Obviously your skin is broken up and sore, but how is it otherwise? Is the stoma leaking in the same direction? Is your skin even in that area? If there is a divot in the area you may need to \"stack up\" hollihesive (a barrier sheet by Hollister) to fill in holes. Also, Is the hole that puts out the output near the skin or at the apex of the stoma? Loop ileostomies have two openings (I know, weird) and if the leaking whole is near the base, it can be shooting output right at the barrier. Also, get some non-alcoholic adhesive remover to help remove the bag. Alcohol will BURN so make sure it is non-alcoholic. Convetec as a really good spray and my favorite \"sheet\" stuff was by Coloplast.",
+    "gemini": {
+      "post_meta": {
+        "topic_title": "CrohnsDisease",
+        "topic_url": "https://reddit.com/r/CrohnsDisease",
+        "post_url": null,
+        "user": "UCgirl",
+        "date": "1451791865"
+      },
+      "targets": {
+        "brands_mentioned": [
+          "Coloplast",
+          "Hollister",
+          "Convetec",
+          "Marlen"
+        ],
+        "explicit_product_terms": [
+          "hollihesive",
+          "barrier sheet",
+          "adhesive remover",
+          "bag"
+        ]
+      },
+      "analysis": {
+        "overall_sentiment": "positive",
+        "neg": 0.09,
+        "neu": 0.77,
+        "pos": 0.14,
+        "compound": 0.4767,
+        "primary_emotions": [
+          "neutral"
+        ],
+        "pros_aspects": [
+          "skin_tolerance"
+        ],
+        "cons_aspects": [
+          "adhesive_irritation",
+          "seal_compromise"
+        ],
+        "key_quotes": [
+          "You may need convexity",
+          "Alcohol will BURN so make sure it is non-alcoholic",
+          "Convetec as a really good spray and my favorite \"sheet\" stuff was by Coloplast"
+        ]
+      },
+      "rationale": "The post offers helpful advice and recommendations for ostomy care, including brand suggestions and solutions to common issues like skin irritation and leakage. The overall tone is positive and supportive. The sentiment analysis reflects this with a slightly positive compound score. The post discusses skin irritation and potential solutions, so adhesive_irritation and skin_tolerance are included. The mention of leaks leads to seal_compromise."
+    },
+    "roberta_emotions": {
+      "joy": 0.07325293058181369,
+      "sadness": 0.009254492212448418,
+      "fear": 0.003852753045554528,
+      "disgust": 0.002797700195585459,
+      "anger": 0.017314058373053165,
+      "neutral": 0.8935280655915447
+    },
+    "primary_emotions": [
+      "neutral",
+      "joy",
+      "anger"
+    ],
+    "resolved_overall": {
+      "source": "gemini",
+      "overall_sentiment": "positive"
+    }
+  },
+  {
+    "topic": "CrohnsDisease",
+    "post_meta": {
+      "topic_title": "CrohnsDisease",
+      "topic_url": "https://reddit.com/r/CrohnsDisease",
+      "post_url": null,
+      "user": "squishpotato",
+      "date": "1452829447"
+    },
+    "text": "It will probably always be there to some extent, just because surgery is major trauma on your body. I think about it like this; they sliced through your fascia, muscles etc. All that was physically separated in a way that it would never naturally. They suture it back together, but your muscle fibers do not repair to the state they were previously. What fills the \"gap\" so to speak is fibrous scar tissue. It will never really be able to reach the same point as the surrounding muscle, so it will always be different to some extent. Your body will adjust, and the muscle around it will adapt to the changes. Just do what you can, and your body will adapt as best as it can. Planks are a good one for really engaging all of those muscles through the abdomen",
+    "gemini": {
+      "post_meta": {
+        "topic_title": "CrohnsDisease",
+        "topic_url": "https://reddit.com/r/CrohnsDisease",
+        "post_url": null,
+        "user": "squishpotato",
+        "date": "1452829447"
+      },
+      "targets": {
+        "brands_mentioned": [],
+        "explicit_product_terms": []
+      },
+      "analysis": {
+        "overall_sentiment": "neutral",
+        "neg": 0.1,
+        "neu": 0.85,
+        "pos": 0.05,
+        "compound": -0.4019,
+        "primary_emotions": [
+          "neutral"
+        ],
+        "pros_aspects": [],
+        "cons_aspects": [],
+        "key_quotes": [
+          "surgery is major trauma on your body",
+          "muscle fibers do not repair to the state they were previously",
+          "your body will adapt"
+        ]
+      },
+      "rationale": "The post discusses the impact of surgery on the body and the healing process. While it acknowledges the trauma, it also expresses a sense of adaptation and adjustment. The overall sentiment is neutral, with a slight negative leaning due to the mention of trauma and scar tissue. No ostomy products are mentioned. neg=0.1 (trauma, separated, different), neu=0.85 (mostly descriptive), pos=0.05 (adapt, adjust)."
+    },
+    "roberta_emotions": {
+      "joy": 0.663117068580124,
+      "sadness": 0.005027667551348831,
+      "fear": 0.0017794589835651705,
+      "disgust": 0.00071279645820435,
+      "anger": 0.009906708577361131,
+      "neutral": 0.3194562998493966
+    },
+    "primary_emotions": [
+      "joy",
+      "neutral",
+      "anger"
+    ],
+    "resolved_overall": {
+      "source": "gemini",
+      "overall_sentiment": "neutral"
+    }
+  },
+  {
+    "topic": "CrohnsDisease",
+    "post_meta": {
+      "topic_title": "CrohnsDisease",
+      "topic_url": "https://reddit.com/r/CrohnsDisease",
+      "post_url": null,
+      "user": "UC-Student",
+      "date": "1453510924"
+    },
+    "text": "I've been on it for 8 weeks all told thus far, I was on 40mg for three weeks prior to beginning my taper as the flare I was having had really messed shit up, I had become incontinent due to extensive inflammation in my colon and lost a hell of a lot of weight. Literally 20 bloody bms a day and become incredibly fatigued, it all happened within the space of three weeks so it was worrying. I would imagine you would be ok as you're tapering at a much slower pace then normal, it will allow your body to adapt to the changes over a longer period of time whereas mine is weekly so it's hit me quite hard.. Next step is new treatment, mesalazine has become useless unfortunately so the harder stuff begins. Hope your taper is all good dude!",
+    "gemini": {
+      "post_meta": {
+        "topic_title": "CrohnsDisease",
+        "topic_url": "https://reddit.com/r/CrohnsDisease",
+        "post_url": null,
+        "user": "UC-Student",
+        "date": "1453510924"
+      },
+      "targets": {
+        "brands_mentioned": [],
+        "explicit_product_terms": [
+          "mesalazine"
+        ]
+      },
+      "analysis": {
+        "overall_sentiment": "negative",
+        "neg": 0.41,
+        "neu": 0.59,
+        "pos": 0.0,
+        "compound": -0.9423,
+        "primary_emotions": [
+          "sadness",
+          "fear",
+          "disgust"
+        ],
+        "pros_aspects": [],
+        "cons_aspects": [],
+        "key_quotes": [
+          "the flare I was having had really messed shit up",
+          "become incontinent due to extensive inflammation",
+          "mesalazine has become useless unfortunately"
+        ]
+      },
+      "rationale": "The post describes a negative experience with a Crohn's flare-up and the ineffectiveness of mesalazine. The tone is largely negative due to the description of symptoms and failed treatment. No ostomy products are mentioned."
+    },
+    "roberta_emotions": {
+      "joy": 0.5592214039831357,
+      "sadness": 0.17449909337727545,
+      "fear": 0.1863940079473971,
+      "disgust": 0.00388109515014258,
+      "anger": 0.02369581899184387,
+      "neutral": 0.052308580550205264
+    },
+    "primary_emotions": [
+      "joy",
+      "fear",
+      "sadness"
+    ],
+    "resolved_overall": {
+      "source": "gemini",
+      "overall_sentiment": "negative"
+    }
+  },
+  {
+    "topic": "CrohnsDisease",
+    "post_meta": {
+      "topic_title": "CrohnsDisease",
+      "topic_url": "https://reddit.com/r/CrohnsDisease",
+      "post_url": null,
+      "user": "elvisthepelvis",
+      "date": "1453526136"
+    },
+    "text": "I hear you. We pay with this stuff. I practiced and played guitar for 40 years, now my hands hurt and I can't play at all. So adapt. Move around the problems and find new spaces to inhabit, new habits and hobbies. Don't let these problems beat you. There are a billion ways to find joy in this world, find one and enjoy it until you can't, then adapt.",
+    "gemini": {
+      "post_meta": {
+        "topic_title": "CrohnsDisease",
+        "topic_url": "https://reddit.com/r/CrohnsDisease",
+        "post_url": null,
+        "user": "elvisthepelvis",
+        "date": "1453526136"
+      },
+      "targets": {
+        "brands_mentioned": [],
+        "explicit_product_terms": []
+      },
+      "analysis": {
+        "overall_sentiment": "positive",
+        "neg": 0.2,
+        "neu": 0.5,
+        "pos": 0.3,
+        "compound": 0.2732,
+        "primary_emotions": [
+          "joy",
+          "neutral"
+        ],
+        "pros_aspects": [],
+        "cons_aspects": [],
+        "key_quotes": [
+          "Don't let these problems beat you.",
+          "There are a billion ways to find joy in this world, find one and enjoy it until you can't, then adapt."
+        ]
+      },
+      "rationale": "The post expresses empathy for the original poster's situation, acknowledges the difficulties, but focuses on adapting and finding joy despite the challenges. The overall tone is positive and encouraging. The neg, neu, pos, and compound scores reflect this sentiment. No ostomy products are mentioned."
+    },
+    "roberta_emotions": {
+      "joy": 0.6709897233066514,
+      "sadness": 0.12279476809417247,
+      "fear": 0.008988958898449083,
+      "disgust": 0.0026149477473909138,
+      "anger": 0.0505062202201398,
+      "neutral": 0.14410538173319637
+    },
+    "primary_emotions": [
+      "joy",
+      "neutral",
+      "sadness"
+    ],
+    "resolved_overall": {
+      "source": "gemini",
+      "overall_sentiment": "positive"
+    }
+  },
+  {
+    "topic": "CrohnsDisease",
+    "post_meta": {
+      "topic_title": "CrohnsDisease",
+      "topic_url": "https://reddit.com/r/CrohnsDisease",
+      "post_url": null,
+      "user": "Psychic_Lemon",
+      "date": "1454116595"
+    },
+    "text": "I'm 28, was diagnosed at 13 and luckily I seem to be the healthiest I've ever been since been diagnosed. Crohn's isn't the end of the world, it might take a little while to find the right treatment for you and adapt your lifestyle accordingly but you can still live a happy, productive life and pretty much do everything you did before: it's just a case of learning to read cues from your body telling you a flair up is coming on or eating/drinking X is bad for you and then you should be fine.",
+    "gemini": {
+      "post_meta": {
+        "topic_title": "CrohnsDisease",
+        "topic_url": "https://reddit.com/r/CrohnsDisease",
+        "post_url": null,
+        "user": "Psychic_Lemon",
+        "date": "1454116595"
+      },
+      "targets": {
+        "brands_mentioned": [],
+        "explicit_product_terms": []
+      },
+      "analysis": {
+        "overall_sentiment": "positive",
+        "neg": 0.04,
+        "neu": 0.78,
+        "pos": 0.18,
+        "compound": 0.7579,
+        "primary_emotions": [
+          "joy",
+          "neutral"
+        ],
+        "pros_aspects": [],
+        "cons_aspects": [],
+        "key_quotes": [
+          "Crohn's isn't the end of the world",
+          "you can still live a happy, productive life",
+          "learning to read cues from your body"
+        ]
+      },
+      "rationale": "The post expresses an optimistic outlook on living with Crohn's disease, emphasizing adaptation and a positive lifestyle. The sentiment is primarily positive, with a small acknowledgement of the challenges (flair ups). No specific products are mentioned."
+    },
+    "roberta_emotions": {
+      "joy": 0.8695419985659613,
+      "sadness": 0.016920133227281867,
+      "fear": 0.006373426511982959,
+      "disgust": 0.0013475904126909089,
+      "anger": 0.014529729063404127,
+      "neutral": 0.09128712221867888
+    },
+    "primary_emotions": [
+      "joy",
+      "neutral",
+      "sadness"
+    ],
+    "resolved_overall": {
+      "source": "gemini",
+      "overall_sentiment": "positive"
+    }
+  }
+]

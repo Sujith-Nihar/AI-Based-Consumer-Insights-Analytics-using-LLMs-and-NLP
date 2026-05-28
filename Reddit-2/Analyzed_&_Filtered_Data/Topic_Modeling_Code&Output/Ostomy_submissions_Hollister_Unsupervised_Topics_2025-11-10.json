@@ -1,0 +1,150 @@
+{
+  "positive_topics": [
+    {
+      "topic_name": "customer_support_samples",
+      "topic_summary": "Users appreciate Hollister's responsive customer service, including sending product samples and offering recommendations to help address specific challenges and improve product fit.",
+      "representative_keywords": [
+        "samples",
+        "recommendations",
+        "customer_service",
+        "support",
+        "nurses",
+        "try"
+      ],
+      "sentiment": "positive"
+    },
+    {
+      "topic_name": "extended_wear_adhesion",
+      "topic_summary": "Specific Hollister extended wear barriers and adhesive sprays are praised for providing strong, durable adhesion that allows for extended wear times of 5-10 days, even during physical activity or water exposure.",
+      "representative_keywords": [
+        "wear_time",
+        "adhesion",
+        "extended_wear",
+        "7-10_days",
+        "spray",
+        "hot_tub",
+        "ocean"
+      ],
+      "sentiment": "positive"
+    },
+    {
+      "topic_name": "effective_odor_control",
+      "topic_summary": "Hollister's M9 deodorizing drops are widely recognized as highly effective in neutralizing or significantly reducing ostomy bag odor, greatly improving user comfort and confidence.",
+      "representative_keywords": [
+        "m9_drops",
+        "odor_control",
+        "eliminates_smell",
+        "deodorizer",
+        "fresh",
+        "confidence"
+      ],
+      "sentiment": "positive"
+    },
+    {
+      "topic_name": "product_fit_options",
+      "topic_summary": "Hollister offers a variety of product options, including smaller bags and convex systems, which are crucial for achieving a proper and comfortable fit for different stoma shapes and sizes, including non-protruding stomas.",
+      "representative_keywords": [
+        "product_fit",
+        "smaller_bags",
+        "convex",
+        "variety",
+        "stoma_shape",
+        "options"
+      ],
+      "sentiment": "positive"
+    },
+    {
+      "topic_name": "soft_wafers",
+      "topic_summary": "Users specifically appreciate the softness of Hollister wafers, which contributes to comfort and potentially better conformity to the skin around the stoma.",
+      "representative_keywords": [
+        "soft_wafers",
+        "comfort",
+        "pliable",
+        "material",
+        "feel"
+      ],
+      "sentiment": "positive"
+    }
+  ],
+  "negative_topics": [
+    {
+      "topic_name": "leakage_and_seal_issues",
+      "topic_summary": "A prevalent concern is the difficulty in achieving and maintaining a reliable seal with Hollister products, leading to frequent leaks, especially with thin or liquid output, and very short wear times.",
+      "representative_keywords": [
+        "leakage",
+        "seal_failure",
+        "short_wear_time",
+        "thin_output",
+        "barrier_failure",
+        "frequent_changes"
+      ],
+      "sentiment": "negative"
+    },
+    {
+      "topic_name": "skin_irritation_reactions",
+      "topic_summary": "Users report skin irritation, breakdown, and adverse reactions around the stoma, sometimes directly linked to Hollister stoma powder or issues when using Hollister products with other barrier rings.",
+      "representative_keywords": [
+        "skin_irritation",
+        "skin_breakdown",
+        "stoma_powder",
+        "allergic",
+        "weepy_skin",
+        "rash"
+      ],
+      "sentiment": "negative"
+    },
+    {
+      "topic_name": "bag_odor_retention",
+      "topic_summary": "Despite using deodorizers, some Hollister ostomy bags are reported to retain or develop an unpleasant odor after only a day or two of wear, causing users to switch to other brands.",
+      "representative_keywords": [
+        "bag_odor",
+        "awful_smell",
+        "smell_after_day",
+        "unpleasant_scent",
+        "emptied",
+        "retention"
+      ],
+      "sentiment": "negative"
+    },
+    {
+      "topic_name": "perceived_inferior_quality",
+      "topic_summary": "Many users perceive Hollister products, particularly the bags and closures, as being of lower overall quality or less effective compared to competitor brands, leading to switches for better performance or security.",
+      "representative_keywords": [
+        "lower_quality",
+        "inferior",
+        "compared_to_others",
+        "new_image",
+        "velcro_closure",
+        "less_secure"
+      ],
+      "sentiment": "negative"
+    },
+    {
+      "topic_name": "adhesive_failure_durability",
+      "topic_summary": "Users experience issues with the durability and sturdiness of Hollister's adhesive components, leading to premature detachment, bags pulling off, or a lack of confidence in the product's ability to stay securely in place.",
+      "representative_keywords": [
+        "adhesive_failure",
+        "pulls_off",
+        "not_sturdy",
+        "accidental_detachment",
+        "bond_weakness",
+        "repositioning_issues"
+      ],
+      "sentiment": "negative"
+    }
+  ],
+  "valid_pros": [
+    "customer_support_samples",
+    "extended_wear_adhesion",
+    "effective_odor_control",
+    "product_fit_options",
+    "soft_wafers"
+  ],
+  "valid_cons": [
+    "leakage_and_seal_issues",
+    "skin_irritation_reactions",
+    "bag_odor_retention",
+    "perceived_inferior_quality",
+    "adhesive_failure_durability"
+  ]
+}

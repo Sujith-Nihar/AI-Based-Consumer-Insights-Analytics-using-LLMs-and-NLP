@@ -1,0 +1,135 @@
+{
+  "positive_topics": [
+    {
+      "topic_name": "filter_performance",
+      "topic_summary": "Users appreciate Hollister's filter design, noting it is more clog-resistant and does not require taping off during bathing, offering convenience and reliability compared to some competitors.",
+      "representative_keywords": [
+        "clog resistant",
+        "two-chambered filter",
+        "no need to tape",
+        "bathe"
+      ],
+      "sentiment": "positive"
+    },
+    {
+      "topic_name": "allergy_friendly_options",
+      "topic_summary": "Hollister provides specific product lines, such as Ceraplus barriers and powders, that cater to users with allergies or sensitive skin, offering suitable alternatives for managing skin health.",
+      "representative_keywords": [
+        "Ceraplus barrier",
+        "allergic",
+        "options",
+        "powder",
+        "crust"
+      ],
+      "sentiment": "positive"
+    },
+    {
+      "topic_name": "customer_support_samples",
+      "topic_summary": "Hollister is recognized for its responsive customer service, offering free product samples and helpful representatives to assist users in finding suitable products for their individual needs.",
+      "representative_keywords": [
+        "free samples",
+        "call directly",
+        "representatives",
+        "helpful"
+      ],
+      "sentiment": "positive"
+    },
+    {
+      "topic_name": "adhesive_gentleness",
+      "topic_summary": "Some users find Hollister's adhesive to be gentler on the skin and less aggressive, which can be beneficial for healing incisions or avoiding irritation compared to stickier alternatives.",
+      "representative_keywords": [
+        "no issues with incisions",
+        "adhesive not too sticky",
+        "gentle",
+        "less aggressive"
+      ],
+      "sentiment": "positive"
+    },
+    {
+      "topic_name": "wafer_quality",
+      "topic_summary": "Despite other concerns, some users express satisfaction with the quality and performance of Hollister's wafers, finding them effective and reliable for their ostomy system.",
+      "representative_keywords": [
+        "loved their wafers",
+        "good wafers",
+        "baseplates",
+        "effective"
+      ],
+      "sentiment": "positive"
+    }
+  ],
+  "negative_topics": [
+    {
+      "topic_name": "skin_irritation",
+      "topic_summary": "A significant number of users report experiencing rashes and skin irritation specifically from Hollister flanges and bags, leading to discomfort and the need to switch brands.",
+      "representative_keywords": [
+        "rash",
+        "irritation",
+        "flanges",
+        "hospital gave",
+        "caused irritation"
+      ],
+      "sentiment": "negative"
+    },
+    {
+      "topic_name": "barrier_breakdown",
+      "topic_summary": "Hollister's barrier rings, particularly Adept Cera, are noted for breaking down quickly or being pushed away by the stoma, which can lead to exposed skin and potential leaks.",
+      "representative_keywords": [
+        "break down quickly",
+        "pushes them away",
+        "exposed skin",
+        "Adept Cera rings"
+      ],
+      "sentiment": "negative"
+    },
+    {
+      "topic_name": "limited_sizing",
+      "topic_summary": "Users find that Hollister barrier rings offer fewer stoma size options compared to competitors, often requiring stretching which can compromise the seal and effectiveness.",
+      "representative_keywords": [
+        "stoma sizes",
+        "stretch",
+        "maintain a seal",
+        "barrier rings",
+        "fewer options"
+      ],
+      "sentiment": "negative"
+    },
+    {
+      "topic_name": "bag_material_dislike",
+      "topic_summary": "Some users express dissatisfaction with the material quality or feel of Hollister's ostomy bags, preferring the aesthetics and texture of other brands' products.",
+      "representative_keywords": [
+        "bag material",
+        "don't like",
+        "inferior",
+        "quality",
+        "aesthetics"
+      ],
+      "sentiment": "negative"
+    },
+    {
+      "topic_name": "brand_switching",
+      "topic_summary": "Many users ultimately switch away from Hollister products to competitors like Coloplast due to various issues, indicating a general preference for other brands' overall systems.",
+      "representative_keywords": [
+        "switched to coloplast",
+        "preferred coloplast",
+        "better systems",
+        "on another level",
+        "dissatisfaction"
+      ],
+      "sentiment": "negative"
+    }
+  ],
+  "valid_pros": [
+    "filter_performance",
+    "allergy_friendly_options",
+    "customer_support_samples",
+    "adhesive_gentleness",
+    "wafer_quality"
+  ],
+  "valid_cons": [
+    "skin_irritation",
+    "barrier_breakdown",
+    "limited_sizing",
+    "bag_material_dislike",
+    "brand_switching"
+  ]
+}
