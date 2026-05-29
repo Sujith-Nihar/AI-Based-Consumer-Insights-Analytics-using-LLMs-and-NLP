@@ -6,11 +6,28 @@
 
 ---
 
+## Live dashboard
+
+**View the interactive insights dashboard:** [https://zesty-dodol-8a6073.netlify.app](https://zesty-dodol-8a6073.netlify.app)
+
+The [**Patient Feedback Intelligence Dashboard**](https://zesty-dodol-8a6073.netlify.app) is a static, stakeholder-friendly web UI built from this project’s NLP outputs. It presents Hollister vs Coloplast insights without running Python locally—including:
+
+- Sentiment **by brand and platform** (Reddit and UOAA, labeled separately)
+- Hollister and Coloplast brand profiles and head-to-head comparison
+- Platform differences, product attribute impact, emotions, themes, and actionable opportunities
+- Selected Power BI / presentation visuals
+
+Source code for the dashboard lives in [`dashboard/`](dashboard/) (`index.html`, `styles.css`, `script.js`). To run it locally, open `dashboard/index.html` in a browser or serve that folder with any static file server.
+
+> The dashboard is a **read-only visualization layer** on top of offline analysis. The NLP pipeline (scraping, Gemini, RoBERTa) still runs locally via the Python scripts described below—not through the Netlify site.
+
+---
+
 ## 1. Project Overview
 
 This project turns scattered patient conversations into structured, decision-ready insights about **Hollister** and **Coloplast** ostomy products. It analyzes discussions from **Reddit** and the **United Ostomy Associations of America (UOAA)** forum—two places where patients share real experiences about leakage, adhesives, skin comfort, fit, odor control, and daily reliability.
 
-The work is an **end-to-end batch analytics and research pipeline**, not a deployed web application. There is no live frontend or REST API. Instead, the system:
+The core work is an **end-to-end batch analytics and research pipeline** (Python scripts, JSON/CSV, Power BI). There is no live API or backend for re-running analysis in the browser. The pipeline:
 
 1. Collects or loads patient text (Reddit via API; UOAA from exported forum datasets in this repo).
 2. Cleans and structures data as JSON/CSV.
@@ -49,6 +66,7 @@ This pipeline addresses that gap by converting unstructured patient language int
 | Topic modeling / theme discovery | `Reddit_Unsupervised_Analyzer.py`, `UOAA Unsupervised.py` + JSON topic outputs |
 | Compare Hollister vs Coloplast | Merged brand datasets + comparative slides/Power BI reports |
 | Communicate insights visually | `Reddit_BI_Visualizations/` and `UOAA_BI_Visualizations/` (`.pbix`) |
+| Share insights in a web dashboard | [`dashboard/`](dashboard/) — deployed at [Netlify](https://zesty-dodol-8a6073.netlify.app) |
 
 ---
 
@@ -263,6 +281,11 @@ AI-Based-Consumer-Insights-Analytics-using-LLMs-and-NLP/
 ├── README.md                          # This file
 ├── requirements.txt                   # Python dependencies
 ├── .env.example                       # API key template
+├── dashboard/                         # ★ Static insights UI (HTML/CSS/JS, Chart.js)
+│   ├── index.html                     # Open locally or deploy (e.g. Netlify)
+│   ├── styles.css
+│   ├── script.js
+│   └── assets/images/                 # Presentation / BI screenshots
 ├── docs/images/                       # Optional slide exports (legacy; README uses Mermaid + tables)
 ├── Presentation_slides/               # Full slide deck (.pptx)
 │
@@ -552,7 +575,23 @@ Power BI is the stakeholder layer of this project. `.pbix` files connect to anal
 
 ## 12. How to Run the Project Locally
 
-### Prerequisites
+### View the insights dashboard (no Python required)
+
+**Online:** [https://zesty-dodol-8a6073.netlify.app](https://zesty-dodol-8a6073.netlify.app)
+
+**Local:**
+
+```bash
+cd dashboard
+open index.html          # macOS
+# Or: python3 -m http.server 8080  →  http://localhost:8080
+```
+
+Charts load from the Chart.js CDN; an internet connection is needed the first time.
+
+### Run the NLP pipeline (Python)
+
+#### Prerequisites
 
 - Python 3.10+ recommended  
 - Power BI Desktop (for dashboards only)  
@@ -684,7 +723,7 @@ Open any `.pbix` under `Reddit_BI_Visualizations/` or `UOAA_BI_Visualizations/` 
 
 ## 15. Final Summary
 
-This repository demonstrates **end-to-end applied AI analytics** for patient voice: collecting community discussions, preparing unstructured text, applying **LLM-based sentiment and attribute extraction**, enriching UOAA data with **RoBERTa emotions**, discovering themes through **Gemini topic modeling**, comparing **Hollister and Coloplast** across platforms, and communicating findings through **Power BI**. It is built for research and business intelligence workflows—turning thousands of patient stories into measurable, explainable product insight—rather than serving as a production web product.
+This repository demonstrates **end-to-end applied AI analytics** for patient voice: collecting community discussions, preparing unstructured text, applying **LLM-based sentiment and attribute extraction**, enriching UOAA data with **RoBERTa emotions**, discovering themes through **Gemini topic modeling**, comparing **Hollister and Coloplast** across platforms, and communicating findings through **Power BI** and a [**hosted insights dashboard**](https://zesty-dodol-8a6073.netlify.app). The Python pipeline is for research and batch analysis; the Netlify dashboard is a static, read-only view of key findings for recruiters, reviewers, and stakeholders.
 
 For the full narrative and additional charts, see `Presentation_slides/AI-based-Analytics Presentation.pptx`.
 
@@ -694,6 +733,8 @@ For the full narrative and additional charts, see `Presentation_slides/AI-based-
 
 | Resource | Path |
 |----------|------|
+| **Live dashboard** | [https://zesty-dodol-8a6073.netlify.app](https://zesty-dodol-8a6073.netlify.app) |
+| Dashboard source | `dashboard/` |
 | Slide deck | `Presentation_slides/AI-based-Analytics Presentation.pptx` |
 | Architecture diagrams | Mermaid in this README (sections 5–9) |
 | Legacy slide PNGs | `docs/images/` (optional; may not render on dark GitHub) |
