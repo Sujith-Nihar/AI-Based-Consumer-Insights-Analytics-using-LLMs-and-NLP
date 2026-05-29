@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Feedback Intelligence | Hollister & Coloplast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="topnav" id="topNav" aria-label="Main">
+    <div class="topnav-inner">
+      <a href="#overview" class="topnav-brand">Patient Feedback <span>Intelligence</span></a>
+      <ul class="topnav-links">
+        <li><a href="#overview" class="active">Overview</a></li>
+        <li><a href="#voice">Sentiment</a></li>
+        <li><a href="#brands">Brands</a></li>
+        <li><a href="#comparison">Comparison</a></li>
+        <li><a href="#platforms">Platforms</a></li>
+        <li><a href="#attributes">Attributes</a></li>
+        <li><a href="#emotions">Emotions</a></li>
+        <li><a href="#opportunities">Opportunities</a></li>
+      </ul>
+      <span class="topnav-badge">Reddit + UOAA · 2016–2025</span>
+    </div>
+  </nav>
+
+  <div class="shell">
+    <!-- Executive header -->
+    <header class="exec-header" id="overview">
+      <div class="exec-grid">
+        <div>
+          <p class="exec-eyebrow">Patient Experience Analytics</p>
+          <h1 class="exec-title">Hollister vs Coloplast Feedback Intelligence</h1>
+          <p class="exec-sub">
+            Patient sentiment, emotions, product pain points, and brand comparison from Reddit and UOAA ostomy care discussions.
+          </p>
+        </div>
+        <aside class="scope-card" aria-label="Analysis scope">
+          <h3>Analysis scope</h3>
+          <div class="scope-row"><span>Brands</span><strong>2</strong></div>
+          <div class="scope-row"><span>Platforms</span><strong>Reddit + UOAA</strong></div>
+          <div class="scope-row"><span>Attributes</span><strong>10 dimensions</strong></div>
+          <div class="scope-row"><span>Methods</span><strong>Sentiment · emotion · topics</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <!-- Dashboard orientation -->
+    <section class="orient-panel" aria-labelledby="orient-title">
+      <h2 id="orient-title" class="orient-title">What this dashboard shows</h2>
+      <p class="orient-lead">Use this page to explore patient feedback insights from Reddit and UOAA—scroll down for charts, comparisons, and recommendations.</p>
+      <ul class="orient-list">
+        <li><span class="orient-check" aria-hidden="true"></span>Company-wise insights for Hollister and Coloplast</li>
+        <li><span class="orient-check" aria-hidden="true"></span>Platform-wise insights from Reddit and UOAA discussions</li>
+        <li><span class="orient-check" aria-hidden="true"></span>Side-by-side comparison of patient sentiment and product experience</li>
+        <li><span class="orient-check" aria-hidden="true"></span>Product attributes driving positive and negative feedback</li>
+        <li><span class="orient-check" aria-hidden="true"></span>Emotion patterns behind patient discussions</li>
+        <li><span class="orient-check" aria-hidden="true"></span>Recurring themes from patient conversations</li>
+        <li><span class="orient-check" aria-hidden="true"></span>Actionable opportunities for each company and shared improvement areas</li>
+      </ul>
+    </section>
+
+    <!-- KPI strip -->
+    <p class="kpi-context">Quick headlines across <strong>both brands</strong> and <strong>both platforms</strong>—see labeled charts below for Hollister vs Coloplast and Reddit vs UOAA.</p>
+    <div class="kpi-strip" role="list">
+      <article class="kpi kpi--warn" role="listitem">
+        <div class="kpi-icon">⚠</div>
+        <p class="kpi-label">Top concern (both brands)</p>
+        <p class="kpi-value">Leakage & seal reliability</p>
+      </article>
+      <article class="kpi kpi--pos" role="listitem">
+        <div class="kpi-icon">✦</div>
+        <p class="kpi-label">Positive driver (both)</p>
+        <p class="kpi-value">Comfort · wear time · reliability</p>
+      </article>
+      <article class="kpi kpi--warn" role="listitem">
+        <div class="kpi-icon">▼</div>
+        <p class="kpi-label">Negative driver (both)</p>
+        <p class="kpi-value">Adhesive failure · irritation</p>
+      </article>
+      <article class="kpi kpi--brand" role="listitem">
+        <div class="kpi-icon">⇄</div>
+        <p class="kpi-label">Compared brands</p>
+        <p class="kpi-value">Hollister vs Coloplast</p>
+      </article>
+      <article class="kpi kpi--out" role="listitem">
+        <div class="kpi-icon">◎</div>
+        <p class="kpi-label">Main output</p>
+        <p class="kpi-value">Pain points & opportunities</p>
+      </article>
+    </div>
+
+    <!-- Patient voice -->
+    <section class="section" id="voice" aria-labelledby="voice-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Patient voice</p>
+          <h2 id="voice-title">Sentiment by brand & platform</h2>
+        </div>
+        <p>Each chart is labeled with company and data source—nothing is blended unless marked “combined.”</p>
+      </div>
+
+      <div class="label-callout" role="note">
+        <strong>How to read this section:</strong> Hollister and Coloplast are shown separately. Reddit and UOAA use different exports in the repository (merged CSV vs results JSON). Percentages are positive · neutral · negative for that brand on that platform only.
+      </div>
+
+      <h3 class="voice-subhead">Sentiment — one chart per brand & platform</h3>
+      <div class="voice-grid-4">
+        <article class="voice-chart-card">
+          <div class="chart-badges">
+            <span class="badge badge--h">Hollister</span>
+            <span class="badge badge--reddit">Reddit</span>
+          </div>
+          <p class="chart-source">Source: Reddit merged CSV · n=1,345</p>
+          <div class="chart-h chart-h--sm"><canvas id="voiceHollisterReddit"></canvas></div>
+          <p class="chart-pcts" id="pctHollisterReddit"></p>
+        </article>
+        <article class="voice-chart-card">
+          <div class="chart-badges">
+            <span class="badge badge--c">Coloplast</span>
+            <span class="badge badge--reddit">Reddit</span>
+          </div>
+          <p class="chart-source">Source: Reddit merged CSV · n=1,360</p>
+          <div class="chart-h chart-h--sm"><canvas id="voiceColoplastReddit"></canvas></div>
+          <p class="chart-pcts" id="pctColoplastReddit"></p>
+        </article>
+        <article class="voice-chart-card">
+          <div class="chart-badges">
+            <span class="badge badge--h">Hollister</span>
+            <span class="badge badge--uoaa">UOAA</span>
+          </div>
+          <p class="chart-source">Source: UOAA results JSON · n=1,210</p>
+          <div class="chart-h chart-h--sm"><canvas id="voiceHollisterUoaa"></canvas></div>
+          <p class="chart-pcts" id="pctHollisterUoaa"></p>
+        </article>
+        <article class="voice-chart-card">
+          <div class="chart-badges">
+            <span class="badge badge--c">Coloplast</span>
+            <span class="badge badge--uoaa">UOAA</span>
+          </div>
+          <p class="chart-source">Source: UOAA results JSON · n=982</p>
+          <div class="chart-h chart-h--sm"><canvas id="voiceColoplastUoaa"></canvas></div>
+          <p class="chart-pcts" id="pctColoplastUoaa"></p>
+        </article>
+      </div>
+
+      <h3 class="voice-subhead">Top negative drivers — by brand (not combined)</h3>
+      <div class="dash-row dash-row--2">
+        <article class="panel">
+          <div class="chart-badges">
+            <span class="badge badge--h">Hollister</span>
+            <span class="badge badge--both">Reddit + UOAA themes</span>
+          </div>
+          <p class="panel-sub">Relative negative-impact index · Hollister topic & attribute analysis</p>
+          <div class="chart-h chart-h--md"><canvas id="topConcernsHollisterChart"></canvas></div>
+        </article>
+        <article class="panel">
+          <div class="chart-badges">
+            <span class="badge badge--c">Coloplast</span>
+            <span class="badge badge--both">Reddit + UOAA themes</span>
+          </div>
+          <p class="panel-sub">Relative negative-impact index · presentation & qualitative themes</p>
+          <div class="chart-h chart-h--md"><canvas id="topConcernsColoplastChart"></canvas></div>
+        </article>
+      </div>
+
+      <div class="dash-row dash-row--2" style="margin-top:0.75rem;">
+        <article class="panel panel--combined">
+          <p class="panel-title">Optional: combined snapshot</p>
+          <p class="panel-sub">All brands · Reddit + UOAA · volume-weighted (use only for a single overall picture)</p>
+          <div class="chart-h chart-h--sm"><canvas id="voiceCombinedChart"></canvas></div>
+        </article>
+        <article class="panel insight-panel">
+          <p class="panel-title">Key takeaways (by brand & platform)</p>
+          <ul>
+            <li><strong>Hollister · Reddit (48.9% positive):</strong> Negative posts often cite adhesives and leakage; positives mention reliability and support.</li>
+            <li><strong>Coloplast · Reddit (56.7% positive):</strong> Higher positive share than Hollister on the same platform (merged CSV).</li>
+            <li><strong>Hollister · UOAA (45.3% positive):</strong> Forum threads emphasize adhesive failure and skin barriers (presentation themes).</li>
+            <li><strong>Coloplast · UOAA (47.3% positive, 28.9% negative):</strong> More polarizing than Hollister on UOAA in presentation summary.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Brands -->
+    <section class="section" id="brands" aria-labelledby="brands-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Brand insights</p>
+          <h2 id="brands-title">Individual Brand Profiles</h2>
+        </div>
+        <p>Reddit merged CSV sentiment · themes from NLP outputs.</p>
+      </div>
+      <div class="dash-row dash-row--2">
+        <article class="panel brand-card">
+          <div class="brand-label brand-label--h"><span class="brand-dot"></span> Hollister</div>
+          <div class="chart-h chart-h--sm"><canvas id="hollisterMiniChart"></canvas></div>
+          <p class="panel-sub" style="margin-top:0.35rem;">Reddit n=1,345 · 48.9% positive</p>
+          <p class="panel-title" style="margin-top:0.75rem;">Positive drivers</p>
+          <ul class="tag-list" id="hPos"></ul>
+          <p class="panel-title">Negative drivers</p>
+          <ul class="tag-list" id="hNeg"></ul>
+          <p class="brand-take" id="hTake"></p>
+        </article>
+        <article class="panel brand-card brand-card--c">
+          <div class="brand-label brand-label--c"><span class="brand-dot"></span> Coloplast</div>
+          <div class="chart-h chart-h--sm"><canvas id="coloplastMiniChart"></canvas></div>
+          <p class="panel-sub" style="margin-top:0.35rem;">Reddit n=1,360 · 56.7% positive</p>
+          <p class="panel-title" style="margin-top:0.75rem;">Positive drivers</p>
+          <ul class="tag-list" id="cPos"></ul>
+          <p class="panel-title">Negative drivers</p>
+          <ul class="tag-list" id="cNeg"></ul>
+          <p class="brand-take" id="cTake"></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="section" id="comparison" aria-labelledby="compare-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Brand comparison</p>
+          <h2 id="compare-title">Hollister vs Coloplast</h2>
+        </div>
+        <p>Presentation branded Reddit subset for sentiment bars · attribute index illustrative.</p>
+      </div>
+      <div class="dash-row dash-row--2-1">
+        <article class="panel">
+          <p class="panel-title">Sentiment comparison (%)</p>
+          <p class="panel-sub">Hollister n=1,245 · Coloplast n=1,334 (presentation)</p>
+          <div class="chart-h chart-h--lg"><canvas id="brandSentimentComparisonChart"></canvas></div>
+        </article>
+        <article class="panel">
+          <p class="panel-title">Attribute strength (positive index)</p>
+          <div class="chart-h chart-h--lg"><canvas id="attributeRadarChart"></canvas></div>
+        </article>
+      </div>
+      <div class="dash-row dash-row--2" style="margin-top:0.75rem;">
+        <article class="panel">
+          <p class="panel-title">Strengths & pain points</p>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Dimension</th><th>Hollister</th><th>Coloplast</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Top positive</td><td>Performance & reliability</td><td>Seal / leak prevention</td></tr>
+              <tr><td>Top negative</td><td>Adhesive / barrier</td><td>Leaks & blowouts</td></tr>
+              <tr><td>Skin</td><td>Mixed; adhesive-linked</td><td>Comfort; some irritation</td></tr>
+              <tr><td>Reddit positive %</td><td>50.5%</td><td>56.5%</td></tr>
+            </tbody>
+          </table>
+        </article>
+        <article class="panel">
+          <p class="panel-title">What this means</p>
+          <div class="meaning-box">
+            <p><strong>Coloplast</strong> is discussed more positively on Reddit in the branded subset, with a lower negative share.</p>
+            <p style="margin-top:0.5rem;"><strong>Hollister</strong> carries more adhesive and barrier-related criticism, while maintaining strengths in reliability and support themes.</p>
+            <p style="margin-top:0.5rem;">On <strong>UOAA</strong>, Coloplast appears more polarizing (higher positive and higher negative vs Hollister in presentation summary).</p>
+          </div>
+          <p class="panel-title" style="margin-top:1rem;">Negative attribute impact</p>
+          <div class="chart-h chart-h--md"><canvas id="attributeImpactChart"></canvas></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Platforms -->
+    <section class="section" id="platforms" aria-labelledby="plat-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Channels</p>
+          <h2 id="plat-title">Reddit vs UOAA</h2>
+        </div>
+      </div>
+      <div class="platform-split">
+        <div class="platform-box reddit">
+          <h4>Reddit</h4>
+          <p>Broader public reactions, faster discussions, and candid product complaints or recommendations across subreddits.</p>
+        </div>
+        <div class="platform-box uoaa">
+          <h4>UOAA Forum</h4>
+          <p>Deeper support-style threads, detailed patient experiences, and problem-solving around fit, adhesives, and daily life.</p>
+        </div>
+      </div>
+      <article class="panel" style="margin-top:0.75rem;">
+        <p class="panel-title">Positive sentiment % by platform</p>
+        <p class="panel-sub">Repo aggregates · Hollister vs Coloplast</p>
+        <div class="chart-h chart-h--md"><canvas id="platformComparisonChart"></canvas></div>
+      </article>
+    </section>
+
+    <!-- Attributes -->
+    <section class="section" id="attributes" aria-labelledby="attr-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Product attributes</p>
+          <h2 id="attr-title">What Drives Satisfaction or Dissatisfaction</h2>
+        </div>
+        <p>Which product features are commonly associated with patient praise or frustration.</p>
+      </div>
+      <article class="panel">
+        <p class="panel-title">Attribute role tags (Hollister index)</p>
+        <p class="panel-sub">Green = positive driver · Orange = negative · Purple = mixed</p>
+        <div class="attr-grid" id="attributeTags"></div>
+      </article>
+    </section>
+
+    <!-- Emotions -->
+    <section class="section" id="emotions" aria-labelledby="emo-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Emotional context</p>
+          <h2 id="emo-title">How Patients Feel</h2>
+        </div>
+        <p>Sentiment is polarity; emotion is the lived reaction—frustration after a leak, relief when a product works.</p>
+      </div>
+      <article class="panel">
+        <p class="panel-title">Emotion profile comparison</p>
+        <p class="panel-sub">Illustrative % aligned with presentation · TODO: aggregate RoBERTa from UOAA JSON</p>
+        <div class="chart-h chart-h--md"><canvas id="emotionChart"></canvas></div>
+      </article>
+    </section>
+
+    <!-- Opportunities -->
+    <section class="section" id="opportunities" aria-labelledby="opp-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Recommendations</p>
+          <h2 id="opp-title">Actionable Opportunities</h2>
+        </div>
+      </div>
+      <div class="opp-board">
+        <article class="panel opp-panel opp-panel--h">
+          <h3>For Hollister</h3>
+          <div id="oppH"></div>
+        </article>
+        <article class="panel opp-panel opp-panel--c">
+          <h3>For Coloplast</h3>
+          <div id="oppC"></div>
+        </article>
+        <article class="panel opp-panel opp-panel--shared">
+          <h3>Shared opportunities</h3>
+          <ul id="oppShared" style="padding-left:1rem;font-size:0.78rem;"></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section" id="visuals" aria-labelledby="vis-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Evidence</p>
+          <h2 id="vis-title">Presentation & Power BI Highlights</h2>
+        </div>
+      </div>
+      <div class="gallery">
+        <article class="gal-card">
+          <img src="assets/images/reddit-brand-sentiment-comparison.png" alt="Brand sentiment comparison" loading="lazy" />
+          <div class="gal-body">
+            <h4>Brand sentiment (Reddit)</h4>
+            <p>Positive, neutral, and negative share side by side.</p>
+            <p class="gal-take">Coloplast: higher positive, lower negative in branded posts.</p>
+          </div>
+        </article>
+        <article class="gal-card">
+          <img src="assets/images/uoaa-hollister-top-aspects.png" alt="Top aspects UOAA" loading="lazy" />
+          <div class="gal-body">
+            <h4>Top aspects (UOAA)</h4>
+            <p>Leading positive and negative Hollister drivers.</p>
+            <p class="gal-take">Adhesive failure dominates negative mentions.</p>
+          </div>
+        </article>
+        <article class="gal-card">
+          <img src="assets/images/reddit-hollister-sentiment-trends.png" alt="Sentiment trends" loading="lazy" />
+          <div class="gal-body">
+            <h4>Sentiment trends</h4>
+            <p>Hollister Reddit polarity over time.</p>
+            <p class="gal-take">Positive share increases; negative stays relatively low.</p>
+          </div>
+        </article>
+        <article class="gal-card">
+          <img src="assets/images/power-bi-dashboards.png" alt="Power BI" loading="lazy" />
+          <div class="gal-body">
+            <h4>Power BI layer</h4>
+            <p>Stakeholder-ready reporting from NLP outputs.</p>
+            <p class="gal-take">Filters and trends without reading raw JSON.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <aside class="about">
+      This dashboard is a static visualization layer built on an offline NLP workflow using Reddit/UOAA data, Gemini-based NLP analysis, RoBERTa emotion classification on UOAA, JSON/CSV outputs, and Power BI dashboards. Not a live or deployed product.
+    </aside>
+
+    <p class="footer">Patient Feedback Intelligence · Hollister & Coloplast · Sujith Thota</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
